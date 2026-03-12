@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光华口腔医学院 本科创新成果展</title>
+    <style>
+        /* 全局变量 - 适配院徽酒红色主调 */
+        :root {
+            --primary-color: #A8262F; /* 院徽标准酒红（中山大学官方红） */
+            --primary-dark: #8C1F28;
+            --bg-light: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --text-dark: #212529;
+            --text-muted: #6C757D;
+            --border-radius: 8px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+            --transition: all 0.3s ease;
+        }
+
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            scroll-behavior: smooth;
+        }
+
+        /* 头部导航 + 动态院徽LOGO */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* 院徽GIF样式调整 */
+        .logo {
+            max-height: 60px;
+            width: auto;
+            transition: var(--transition);
+            animation: logoLoad 1s ease-out;
+        }
+
+        @keyframes logoLoad {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .header-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .author-name {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* 首页英雄区 */
+        .hero {
+            padding: 120px 2rem 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-welcome {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 0.6rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-subtitle-extra {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 项目展示容器 */
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 80px;
+            display: grid;
+            gap: 3rem;
+        }
+
+        /* 项目卡片 */
+        .project-card {
+            background-color: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .project-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-8px);
+        }
+
+        .project-header {
+            padding: 1.5rem 2rem 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* 视频/图片容器 */
+        .project-media-wrapper {
+            width: 100%;
+            padding: 0 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-media {
+            width: 100%;
+            border-radius: var(--border-radius);
+            background-color: #000;
+        }
+
+        .project-media.img {
+            background-color: transparent;
+        }
+
+        .project-content {
+            padding: 0 2rem 2rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* 跳转链接按钮 */
+        .project-link-btn {
+            display: inline-block;
+            padding: 0.7rem 1.8rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .project-link-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(168, 38, 47, 0.3);
+        }
+
+        /* 无链接时的文字提示样式 */
+        .project-text-note {
+            display: inline-block;
+            padding: 0.7rem 1.8rem;
+            background-color: var(--bg-light);
+            color: var(--text-muted);
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            border: 1px dashed #dee2e6;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* 移动端响应式适配 */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0.6rem 1rem;
+                justify-content: center;
+            }
+
+            .logo {
+                max-height: 50px;
+            }
+
+            .header-title {
+                font-size: 1rem;
+            }
+
+            .author-name {
+                font-size: 0.9rem;
+                width: 100%;
+                text-align: center;
+                order: 3;
+            }
+
+            .nav-list {
+                gap: 0.6rem;
+                font-size: 0.85rem;
+                margin-top: 0.5rem;
+                width: 100%;
+                order: 2;
+            }
+
+            .logo-wrapper {
+                order: 1;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .hero {
+                padding: 140px 1rem 40px;
+            }
+
+            .hero-welcome {
+                font-size: 1.1rem;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle, .hero-subtitle-extra {
+                font-size: 1rem;
+            }
+
+            .projects-container {
+                padding: 0 1rem 60px;
+                gap: 2rem;
+            }
+
+            .project-header, .project-media-wrapper, .project-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .project-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 + 动态院徽 -->
+    <header>
+        <div class="header-container">
+            <div class="logo-wrapper">
+                <!-- 院徽GIF（注意：建议也改成英文文件名，如logo.gif） -->
+                <img src="4s版推文学院动态logo中.gif" alt="中山大学光华口腔医学院动态院徽" class="logo">
+                <div class="header-title">中山大学光华口腔医学院</div>
+            </div>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#project1" class="nav-link">刷牙仿真软件</a></li>
+                    <li><a href="#project2" class="nav-link">认牙趣味软件</a></li>
+                    <li><a href="#project3" class="nav-link">标本馆网站</a></li>
+                    <li><a href="#project4" class="nav-link">3D文创设计</a></li>
+                    <li><a href="#project5" class="nav-link">动态logo设计</a></li>
+                    <li><a href="#project6" class="nav-link">航拍作品</a></li>
+                </ul>
+            </nav>
+            <div class="author-name">作者：陈增煜</div>
+        </div>
+    </header>
+
+    <!-- 首页英雄区 -->
+    <section class="hero">
+        <p class="hero-welcome">您好！欢迎来到我的个人博客</p>
+        <h1 class="hero-title">本科创新发展成果展</h1>
+        <p class="hero-subtitle">以数字技术赋能口腔医学科普，以创新实践践行医学初心</p>
+        <p class="hero-subtitle-extra">以文创设计传递医学温度，以航拍视角记录美好时光</p>
+    </section>
+
+    <!-- 项目展示区 -->
+    <main class="projects-container">
+        <!-- 项目1：虚拟仿真刷牙科普软件 -->
+        <div class="project-card" id="project1">
+            <div class="project-header">
+                <h2 class="project-title">虚拟仿真刷牙科普软件</h2>
+            </div>
+            <div class="project-media-wrapper">
+                <video class="project-media" controls preload="metadata" playsinline>
+                    <source src="shuaya.mp4" type="video/mp4">
+                    您的浏览器不支持HTML5视频播放，请升级浏览器。
+                </video>
+            </div>
+            <div class="project-content">
+                <p class="project-desc">
+                    自主开发的口腔刷牙虚拟仿真科普软件，通过3D交互技术还原正确刷牙的全流程，
+                    可视化展示牙菌斑清洁效果，针对不同年龄段用户打造沉浸式口腔健康科普体验，
+                    解决传统口腔科普抽象、互动性弱的痛点。
+                </p>
+                <a href="https://teethgame.github.io/Bass-Method/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                    体验软件详情
+                </a>
+            </div>
+        </div>
+
+        <!-- 项目2：趣味认牙软件 -->
+        <div class="project-card" id="project2">
+            <div class="project-header">
+                <h2 class="project-title">趣味认牙科普软件</h2>
+            </div>
+            <div class="project-media-wrapper">
+                <video class="project-media" controls preload="metadata" playsinline>
+                    <source src="renya.mp4" type="video/mp4">
+                    您的浏览器不支持HTML5视频播放，请升级浏览器。
+                </video>
+            </div>
+            <div class="project-content">
+                <p class="project-desc">
+                    以游戏化交互模式打造的牙齿认知科普软件，通过闯关、答题、3D模型拆解等趣味形式，
+                    帮助用户快速识别牙体形态、掌握牙体解剖知识，将专业的口腔医学知识转化为轻量化、
+                    易接受的科普内容，适配中小学口腔健康教育与大众科普场景。
+                </p>
+                <a href="https://teethgame.github.io/Tetris/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                    查看软件详情
+                </a>
+            </div>
+        </div>
+
+        <!-- 项目3：标本馆科普网站 -->
+        <div class="project-card" id="project3">
+            <div class="project-header">
+                <h2 class="project-title">学院标本馆科普网站</h2>
+            </div>
+            <div class="project-media-wrapper">
+                <img src="biaobenguan.jpg" alt="标本馆科普网站展示" class="project-media img">
+            </div>
+            <div class="project-content">
+                <p class="project-desc">
+                    为学院口腔标本馆独立开发的线上科普网站，实现标本3D全景展示、病理知识科普、
+                    线上预约参观等功能，将线下馆藏资源数字化，打破时空限制，打造线上口腔医学科普阵地，
+                    助力学院教学与公众科普双向赋能。
+                </p>
+                <a href="https://biaobenguanjiangjiedui.github.io/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                    访问科普网站
+                </a>
+            </div>
+        </div>
+
+        <!-- 项目4：3D建模文创产品 -->
+        <div class="project-card" id="project4">
+            <div class="project-header">
+                <h2 class="project-title">口腔主题3D建模文创产品设计</h2>
+            </div>
+            <div class="project-media-wrapper">
+                <video class="project-media" controls preload="metadata" playsinline>
+                    <source src="3Dwenchuang.mp4" type="video/mp4">
+                    您的浏览器不支持HTML5视频播放，请升级浏览器。
+                </video>
+            </div>
+            <div class="project-content">
+                <p class="project-desc">
+                    以口腔解剖结构为核心灵感，设计并建模制作系列口腔医学主题文创产品，
+                    融合专业知识与美学设计，通过3D打印实现落地，打造兼具科普性与纪念意义的口腔文化周边，
+                    让医学知识以更年轻化、生活化的形式触达大众。
+                </p>
+                <span class="project-text-note">项目展示视频</span>
+            </div>
+        </div>
+
+        <!-- 项目5：学院动态logo设计 -->
+        <div class="project-card" id="project5">
+            <div class="project-header">
+                <h2 class="project-title">学院动态logo设计</h2>
+            </div>
+            <div class="project-media-wrapper">
+                <video class="project-media" controls preload="metadata" playsinline>
+                    <source src="dongtai.mp4" type="video/mp4">
+                    您的浏览器不支持HTML5视频播放，请升级浏览器。
+                </video>
+            </div>
+            <div class="project-content">
+                <p class="project-desc">
+                    为学院设计的动态logo版本，在保持原有院徽视觉识别核心的基础上，
+                    通过流畅的动画效果赋予logo生命力，适用于学院网站、宣传片、会议开场等多种数字化场景，
+                    提升学院视觉形象的现代感与传播力。
+                </p>
+                <span class="project-text-note">动态logo设计展示</span>
+            </div>
+        </div>
+
+        <!-- 项目6：航拍作品 -->
+        <div class="project-card" id="project6">
+            <div class="project-header">
+                <h2 class="project-title">校园与城市航拍作品</h2>
+            </div>
+            <div class="project-media-wrapper">
+                <video class="project-media" controls preload="metadata" playsinline>
+                    <source src="hangpai.MP4" type="video/mp4">
+                    您的浏览器不支持HTML5视频播放，请升级浏览器。
+                </video>
+            </div>
+            <div class="project-content">
+                <p class="project-desc">
+                    以航拍视角记录中山大学北校园、学院地标与城市风光，通过专业的镜头语言与后期制作，
+                    呈现校园风貌与城市景观的独特美感，作品兼具纪实性与艺术性，
+                    定格校园时光与城市发展的精彩瞬间。
+                </p>
+                <span class="project-text-note">航拍作品合集</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <p class="footer-text">中山大学光华口腔医学院 © 2024 本科创新成果展示 | 作者：陈增煜</p>
+    </footer>
+
+    <!-- 交互动效JS -->
+    <script>
+        // 滚动渐入动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', () => {
+            // 监听所有项目卡片，实现滚动渐入
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // 滚动时头部导航与logo动态缩放
+            const header = document.querySelector('header');
+            const logo = document.querySelector('.logo');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.style.padding = '0.4rem 0';
+                    logo.style.maxHeight = '50px';
+                } else {
+                    header.style.padding = '0';
+                    logo.style.maxHeight = '60px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
