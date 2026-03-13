@@ -311,7 +311,7 @@
             line-height: 1.6;
         }
 
-        /* 移动端响应式适配（核心修复部分） */
+        /* 移动端响应式适配 */
         @media (max-width: 768px) {
             .header-container {
                 padding: 0.6rem 1rem;
@@ -355,7 +355,6 @@
                 font-size: 0.8rem;
             }
 
-            /* 核心修复：加大顶部padding，彻底解决内容被header遮挡 */
             .hero {
                 padding: 170px 1rem 40px;
             }
@@ -391,7 +390,7 @@
             }
         }
 
-        /* 小屏手机极致适配（解决折叠屏/小屏手机错位） */
+        /* 小屏手机极致适配 */
         @media (max-width: 400px) {
             .nav-list {
                 gap: 0.4rem;
@@ -413,7 +412,8 @@
     <header>
         <div class="header-container">
             <div class="logo-wrapper">
-                <img src="4s版推文学院动态logo中.gif" alt="中山大学光华口腔医学院动态院徽" class="logo">
+                <!-- 已更新logo文件名为logo.gif -->
+                <img src="logo.gif" alt="中山大学光华口腔医学院动态院徽" class="logo">
                 <div class="header-title">中山大学光华口腔医学院</div>
             </div>
             <nav>
@@ -453,8 +453,8 @@
             </div>
             <div class="project-content">
                 <p class="project-desc">
-                    自主开发的口腔刷牙虚拟仿真科普软件，通过3D交互技术还原正确刷牙的全流程，
-                    可视化展示牙菌斑清洁效果，针对不同年龄段用户打造沉浸式口腔健康科普体验，
+                    自主开发改良巴氏刷牙法虚拟仿真科普软件，通过3D交互技术还原正确刷牙的步骤，
+                    可视化展示牙菌斑清洁效果，打造沉浸式口腔健康科普体验，
                     解决传统口腔科普抽象、互动性弱的痛点。
                 </p>
                 <a href="https://teethgame.github.io/Bass-Method/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
@@ -476,9 +476,8 @@
             </div>
             <div class="project-content">
                 <p class="project-desc">
-                    以游戏化交互模式打造的牙齿认知科普软件，通过闯关、答题、3D模型拆解等趣味形式，
-                    帮助用户快速识别牙体形态、掌握牙体解剖知识，将专业的口腔医学知识转化为轻量化、
-                    易接受的科普内容，适配中小学口腔健康教育与大众科普场景。
+                    以游戏化交互模式打造牙齿解剖科普软件，通过闯关、3D模型拆解、竞速等趣味形式，
+                    帮助用户趣味识别牙体形态、掌握牙体解剖知识，将枯燥的专业口腔医学知识转化为趣味的形式，激发学习兴趣。
                 </p>
                 <a href="https://teethgame.github.io/Tetris/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
                     查看软件详情
@@ -519,9 +518,7 @@
             </div>
             <div class="project-content">
                 <p class="project-desc">
-                    以口腔解剖结构为核心灵感，设计并建模制作系列口腔医学主题文创产品，
-                    融合专业知识与美学设计，通过3D打印实现落地，打造兼具科普性与纪念意义的口腔文化周边，
-                    让医学知识以更年轻化、生活化的形式触达大众。
+                    设计并建模制作系列学院主题文创产品，通过3D打印实现落地，展现医者温度与光华学子风采，增强文化软实力。
                 </p>
                 <span class="project-text-note">项目展示视频</span>
             </div>
@@ -540,8 +537,7 @@
             </div>
             <div class="project-content">
                 <p class="project-desc">
-                    为学院设计的动态logo版本，在保持原有院徽视觉识别核心的基础上，
-                    通过流畅的动画效果赋予logo生命力，适用于学院网站、宣传片、会议开场等多种数字化场景，
+                    为学院设计动态logo版本院徽，赋予logo生命力，适用于学院官微等多种数字化场景，
                     提升学院视觉形象的现代感与传播力。
                 </p>
                 <span class="project-text-note">动态logo设计展示</span>
@@ -561,8 +557,7 @@
             </div>
             <div class="project-content">
                 <p class="project-desc">
-                    以航拍视角记录中山大学北校园、学院地标与城市风光，通过专业的镜头语言与后期制作，
-                    呈现校园风貌与城市景观的独特美感，作品兼具纪实性与艺术性，
+                    以航拍视角记录美好生活，
                     定格校园时光与城市发展的精彩瞬间。
                 </p>
                 <span class="project-text-note">航拍作品合集</span>
@@ -612,7 +607,7 @@
                 }
             });
 
-            // 移动端锚点跳转修复：解决跳转后被header遮挡
+            // 移动端锚点跳转修复
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
